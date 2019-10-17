@@ -1,0 +1,49 @@
+{{#if currentUser}}
+  <h1>{{ i18n 'filter.title' }} Settings For {{ currentUser.username }}</h1>
+  <p>
+    To add yourself to a filtered view of the site, type in a region and hit the add button.
+    <br/>
+    You can add yourself to multiple regions. If no regions are added, this plugin will not affect you.
+  </p>
+  <i>
+    valid regions are:
+  </i>
+  <br/>
+  <ul>
+  <li>north-america</li>
+  <li>south-america</li>
+  <li>europe</li>
+  <li>other</li>
+  </ul>
+  
+  <form {{ action 'createFilter' filter on='submit' }}>
+    <label>
+      {{ i18n 'filter.create_filter.text_field_label' }}
+      {{ textarea name='filter' value=filter }}
+      
+    </label>
+  
+    <button type='submit' class='btn btn-primary'>
+      {{ i18n 'filter.create_filter.submit_label' }}
+    </button>
+  </form>
+  
+  {{#if filters}}
+  <ul>
+    {{#each filters as |filter|}}
+      {{#if (equals filter.user_id currentUser.id)}}
+      <li>
+        filter added: {{ filter.content }}
+  
+        <button type="button" class="btn btn-danger" {{ action 'deleteFilter' filter }}>
+          {{ i18n 'filter.delete_filter_label' }}
+        </button>
+      </li>
+      {{/if}}
+    {{/each}}
+  </ul>
+  {{/if}}
+{{ else }}
+  <p>This page is to only view posts from certain locations in the world.</p>
+  <p> You need to be logged in to access it</p>
+{{/if}}
