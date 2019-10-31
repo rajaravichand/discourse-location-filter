@@ -1,0 +1,12 @@
+en:
+  js:
+    filter:
+      title: 'Location Filter Plugin'
+
+      create_filter:
+        text_field_label: 'New Filter:'
+        submit_label: 'Add Filter'
+
+      delete_filter_label: 'Delete Filter'
+
+      goto_filter_page: "Goto Filter"
